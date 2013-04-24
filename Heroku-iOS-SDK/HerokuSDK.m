@@ -141,14 +141,13 @@
     
 }
 
-// Heroku seems to have misdocumented this endpoint
-/* + (void)activateMaintenanceModeForAppWithName:(NSString*)app
++ (void)activateMaintenanceModeForAppWithName:(NSString*)app
                                       success:(void (^)(id responseObject))success
                                       failure:(void (^)(NSError *error))failure {
     
     NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"1" forKey:@"maintenance_mode"];
     
-    [[ITHTTPClient sharedClient] putPath:[NSString stringWithFormat:@"/apps/%@/server/maintenance", app]
+    [[ITHTTPClient sharedClient] postPath:[NSString stringWithFormat:@"/apps/%@/server/maintenance", app]
                               parameters:parameters
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      success([self processResponse:responseObject]);
@@ -156,7 +155,21 @@
                                      failure(error);
                                  }];
     
-} */
+}
+
++ (void)deactivateMaintenanceModeForAppWithName:(NSString*)app
+                                        success:(void (^)(id responseObject))success
+                                        failure:(void (^)(NSError *error))failure {
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"0" forKey:@"maintenance_mode"];
+    
+    [[ITHTTPClient sharedClient] postPath:[NSString stringWithFormat:@"/apps/%@/server/maintenance", app]
+                               parameters:parameters
+                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                      success([self processResponse:responseObject]);
+                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                      failure(error);
+                                  }];
+}
 
 + (void)deleteAppNamed:(NSString*)app
                success:(void (^)(id responseObject))success

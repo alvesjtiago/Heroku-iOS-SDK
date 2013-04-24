@@ -43,10 +43,13 @@
                     success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure;
 
-// Heroku seems to have misdocumented this endpoint
-/* + (void)activateMaintenanceModeForAppWithName:(NSString*)app
++ (void)activateMaintenanceModeForAppWithName:(NSString*)app
                                       success:(void (^)(id responseObject))success
-                                      failure:(void (^)(NSError *error))failure; */
+                                      failure:(void (^)(NSError *error))failure;
+
++ (void)deactivateMaintenanceModeForAppWithName:(NSString*)app
+                                        success:(void (^)(id responseObject))success
+                                        failure:(void (^)(NSError *error))failure;
 
 + (void)deleteAppNamed:(NSString*)app
                success:(void (^)(id responseObject))success
