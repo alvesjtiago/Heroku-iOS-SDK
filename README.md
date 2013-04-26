@@ -15,32 +15,32 @@ Heroku iOS SDK is a simple wrap-up of the Heroku API for iOS. It's built on top 
 
 ``` objective-c
 [HerokuSDK loginUserWithToken:self.tokenTextField.text
-                          success:^(id responseObject) {
-                              NSLog(@"User logged in");
-                          } failure:^(NSError *error) {
-                              NSLog(@"Failed to authenticate user: %@", error);
-                          }];
+                      success:^(id responseObject) {
+                          NSLog(@"User logged in");
+                      } failure:^(NSError *error) {
+                          NSLog(@"Failed to authenticate user: %@", error);
+                      }];
 ```
 
 ### Fetch user apps
 
 ``` objective-c
 [HerokuSDK getAppsWithSuccess:^(id responseObject) {
-        NSLog(@"Apps array: %@", resposeObject);
-    } failure:^(NSError *error) {
-        NSLog(@"Failed: %@", error);
-    }];
+    NSLog(@"Apps array: %@", resposeObject);
+} failure:^(NSError *error) {
+    NSLog(@"Failed: %@", error);
+}];
 ```
 
 ### Restart app
 
 ``` objective-c
-[HerokuSDK restartAppNamed:[self.app objectForKey:@"name"]
-                       success:^(id responseObject) {
-                           NSLog(@"Restarted app with success");
-                       } failure:^(NSError *error) {
-                           NSLog(@"Failed to restart app");
-                       }];
+[HerokuSDK restartAppNamed:self.app.name
+                   success:^(id responseObject) {
+	                   NSLog(@"Restarted app with success");
+                   } failure:^(NSError *error) {
+                       NSLog(@"Failed to restart app : %@", error);
+                   }];
 ```
 
 ##Disclaimer
